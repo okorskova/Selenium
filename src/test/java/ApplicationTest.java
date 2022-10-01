@@ -16,12 +16,6 @@ import static org.openqa.selenium.By.id;
 
 class ApplicationTest {
     private WebDriver driver;
-//    ChromeOptions options = new ChromeOptions();
-//    options.addArguments("--disable-dev-shm-usage");
-//    options.addArguments("--no-sandbox");
-//    options.addArguments("--headless");
-//    WebDriver driver = new ChromeDriver(options);
-
 
     @BeforeAll
     static void setUpAll() {
@@ -30,7 +24,11 @@ class ApplicationTest {
 
     @BeforeEach
     void setUp() {
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
+        driver = new ChromeDriver(options);
     }
 
     @AfterEach
