@@ -30,6 +30,7 @@ class ApplicationTest {
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
         driver = new ChromeDriver(options);
+        driver.get("http://localhost:7777/");
     }
 
     @AfterEach
@@ -39,18 +40,14 @@ class ApplicationTest {
     }
 
     @Test
-    void shouldTestValidForm() {
-        driver.get("http://localhost:7777/");
+    void shouldTestValidForm() {        
         driver.findElement(By.cssSelector("[data-test-id=name] input")).sendKeys("Петров Иван");
         driver.findElement(By.cssSelector("[data-test-id=phone] input")).sendKeys("+79998888888");
         driver.findElement(By.cssSelector("[data-test-id=agreement]")).click();
         driver.findElement(By.className("button")).click();
         String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
         String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText().trim();
-        assertEquals(expected, actual);
-
-        //String text = driver.findElement(By.className("alert-success")).getText();
-        //assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
+        assertEquals(expected, actual);        
     }
     @Test
     void shouldTestEmptyForm() {
@@ -69,7 +66,6 @@ class ApplicationTest {
         String actual = driver.findElement(By.className("input__sub")).getText().trim();
         assertEquals(expected, actual);
     }
-
 
 
 }
