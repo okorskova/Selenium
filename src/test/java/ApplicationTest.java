@@ -8,9 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.params.shadow.com.univocity.parsers.conversions.Conversions.trim;
 import static org.openqa.selenium.By.id;
@@ -68,7 +65,7 @@ class ApplicationTest {
 
         driver.findElement(By.className("button")).click();
         String expected = "Поле обязательно для заполнения";
-        String actual = driver.findElement(By.className("input__sub")).getText().trim();
+        String actual = driver.findElement(By.cssSelector("[data-test-id='name'].input_invalid .input__sub")).getText().trim();
         assertEquals(expected, actual);
     }
 
